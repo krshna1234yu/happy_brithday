@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Kareja</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --space-black: #000814;
+            --space-blue: #001d3d;
+            --space-purple: #3a0ca3;
+            --moon-light: #f8f9fa;
+            --moon-glow: #ffd700;
+            --magic-pink: #ff006e;
+            --magic-blue: #4cc9f0;
+            --star-gold: #ffd166;
+            --text-glow: #ff9e00;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--space-black) 0%, var(--space-purple) 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Starfield */
+        .starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite alternate;
+        }
+        
+        /* Nebula Background */
+        .nebula {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 0, 110, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(76, 201, 240, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 209, 102, 0.1) 0%, transparent 50%);
+            z-index: -2;
+            filter: blur(40px);
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--moon-glow), var(--magic-pink), var(--magic-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(to right, transparent, var(--magic-pink), transparent);
+            border-radius: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        /* Moon Section */
+        .moon-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        /* Moon Container */
+        .moon-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+        }
+        
+        .moon {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, var(--moon-light), #c0c0c0);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 100px rgba(255, 215, 0, 0.6),
+                0 0 200px rgba(255, 0, 110, 0.4),
+                inset 0 0 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: moonGlow 8s ease-in-out infinite;
+        }
+        
+        /* Moon Craters */
+        .crater {
+            position: absolute;
+            background: radial-gradient(circle, rgba(192, 192, 192, 0.7), rgba(128, 128, 128, 0.3));
+            border-radius: 50%;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Image Rings */
+        .image-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+        
+        .outer-ring {
+            width: 400px;
+            height: 400px;
+            animation: rotateClockwise 40s linear infinite;
+        }
+        
+        .middle-ring {
+            width: 280px;
+            height: 280px;
+            animation: rotateCounterClockwise 30s linear infinite;
+        }
+        
+        .inner-ring {
+            width: 160px;
+            height: 160px;
+            animation: rotateClockwise 20s linear infinite;
+        }
+        
+        .ring-image {
+            position: absolute;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .ring-image:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 30px var(--magic-pink);
+            z-index: 100;
+        }
+        
+        .ring-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Central Image */
+        .central-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--moon-glow);
+            box-shadow: 
+                0 0 40px var(--moon-glow),
+                0 0 80px rgba(255, 215, 0, 0.5);
+            animation: centralPulse 5s ease-in-out infinite;
+            z-index: 50;
+            cursor: pointer;
+        }
+        
+        .central-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Satellite Orbits */
+        .satellite-orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transform: translate(-50%, -50%);
+        }
+        
+        .satellite {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: var(--magic-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--magic-blue);
+            animation: satelliteMove 15s linear infinite;
+        }
+        
+        /* Birthday Text Bloom */
+        .birthday-bloom {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+        }
+        
+        .bloom-text {
+            font-size: 8rem;
+            font-weight: 900;
+            color: transparent;
+            background: linear-gradient(45deg, var(--moon-glow), var(--magic-pink), var(--magic-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+            letter-spacing: 10px;
+            text-align: center;
+            line-height: 1.2;
+            padding: 0 30px;
+            animation: textBloom 3s ease-out forwards;
+        }
+        
+        .bloom-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 30%, var(--space-black) 70%);
+            animation: bloomLight 4s ease-out forwards;
+        }
+        
+        /* Controls Panel */
+        .controls-panel {
+            position: fixed;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            background: rgba(0, 8, 20, 0.8);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .control-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--magic-blue);
+            color: var(--magic-blue);
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: var(--magic-blue);
+            color: var(--space-black);
+            transform: scale(1.1);
+            box-shadow: 0 0 25px var(--magic-blue);
+        }
+        
+        .control-btn.active {
+            background: var(--magic-pink);
+            border-color: var(--magic-pink);
+            color: white;
+        }
+        
+        /* Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            background: rgba(0, 13, 61, 0.4);
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 40px;
+        }
+        
+        .grid-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 180px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .grid-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(255, 0, 110, 0.4);
+        }
+        
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .grid-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .grid-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .grid-item:hover .grid-overlay {
+            transform: translateY(0);
+        }
+        
+        /* Status Bar */
+        .status-bar {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 8, 20, 0.8);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 100;
+        }
+        
+        .image-count {
+            font-size: 1.1rem;
+        }
+        
+        .count-number {
+            color: var(--moon-glow);
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+        
+        /* Modal */
+        .image-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 20px;
+            box-shadow: 0 0 100px var(--magic-pink);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: var(--moon-glow);
+        }
+        
+        /* Animations */
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+        
+        @keyframes moonGlow {
+            0%, 100% { box-shadow: 0 0 100px rgba(255, 215, 0, 0.6), 0 0 200px rgba(255, 0, 110, 0.4), inset 0 0 60px rgba(0, 0, 0, 0.3); }
+            50% { box-shadow: 0 0 120px rgba(255, 215, 0, 0.8), 0 0 250px rgba(255, 0, 110, 0.6), inset 0 0 60px rgba(0, 0, 0, 0.3); }
+        }
+        
+        @keyframes rotateClockwise {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        @keyframes rotateCounterClockwise {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
+        
+        @keyframes centralPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 40px var(--moon-glow), 0 0 80px rgba(255, 215, 0, 0.5); }
+            50% { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 60px var(--moon-glow), 0 0 120px rgba(255, 215, 0, 0.7); }
+        }
+        
+        @keyframes satelliteMove {
+            0% { transform: rotate(0deg) translateX(300px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(300px) rotate(-360deg); }
+        }
+        
+        @keyframes textBloom {
+            0% { opacity: 0; transform: scale(0.3); filter: blur(20px); }
+            30% { opacity: 1; transform: scale(1.1); filter: blur(0); }
+            70% { opacity: 1; transform: scale(1.1); filter: blur(0); }
+            100% { opacity: 0; transform: scale(1); filter: blur(10px); }
+        }
+        
+        @keyframes bloomLight {
+            0% { opacity: 0; }
+            30% { opacity: 0.8; }
+            70% { opacity: 0.8; }
+            100% { opacity: 0; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .moon-container {
+                width: 400px;
+                height: 400px;
+            }
+            
+            .outer-ring { width: 320px; height: 320px; }
+            .middle-ring { width: 220px; height: 220px; }
+            .inner-ring { width: 130px; height: 130px; }
+            
+            .bloom-text {
+                font-size: 6rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 3rem;
+            }
+            
+            .moon-container {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .outer-ring { width: 240px; height: 240px; }
+            .middle-ring { width: 170px; height: 170px; }
+            .inner-ring { width: 100px; height: 100px; }
+            
+            .central-image {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .controls-panel {
+                top: auto;
+                bottom: 20px;
+                right: 50%;
+                transform: translateX(50%);
+                flex-direction: row;
+                padding: 15px;
+            }
+            
+            .status-bar {
+                top: 10px;
+                left: 10px;
+                padding: 10px 15px;
+            }
+            
+            .bloom-text {
+                font-size: 4rem;
+                letter-spacing: 5px;
+            }
+            
+            .image-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                padding: 20px;
+                gap: 15px;
+            }
+            
+            .grid-item {
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Starfield Background -->
+    <div class="starfield" id="starfield"></div>
+    <div class="nebula"></div>
+    
+    <!-- Birthday Bloom Effect -->
+    <div class="birthday-bloom" id="birthdayBloom">
+        <div class="bloom-overlay"></div>
+        <div class="bloom-text">HAPPY BIRTHDAY!</div>
+    </div>
+    
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="image-count">
+            <i class="fas fa-images"></i>
+            <span>Loaded: <span class="count-number" id="countNumber">0</span>/13</span>
+        </div>
+        <div class="loading-text" id="loadingText">Loading magic...</div>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Happy Birthday Kareja</h1>
+            <p class="subtitle">Your birthday images dancing in celestial harmony within the magical moon</p>
+        </div>
+        
+        <!-- Moon Section -->
+        <div class="moon-section">
+            <div class="moon-container">
+                <!-- Moon -->
+                <div class="moon" id="moon">
+                    <!-- Craters -->
+                    <div class="crater" style="width: 70px; height: 70px; top: 20%; left: 20%;"></div>
+                    <div class="crater" style="width: 50px; height: 50px; top: 60%; left: 15%;"></div>
+                    <div class="crater" style="width: 60px; height: 60px; top: 40%; left: 65%;"></div>
+                    <div class="crater" style="width: 40px; height: 40px; top: 75%; left: 70%;"></div>
+                    <div class="crater" style="width: 55px; height: 55px; top: 15%; left: 70%;"></div>
+                    
+                    <!-- Image Rings -->
+                    <div class="image-ring outer-ring" id="outerRing">
+                        <!-- Outer ring images will be added here -->
+                    </div>
+                    
+                    <div class="image-ring middle-ring" id="middleRing">
+                        <!-- Middle ring images will be added here -->
+                    </div>
+                    
+                    <div class="image-ring inner-ring" id="innerRing">
+                        <!-- Inner ring images will be added here -->
+                    </div>
+                    
+                    <!-- Central Image -->
+                    <div class="central-image" id="centralImage">
+                        <img src="" alt="Central Birthday Image" id="centralImg">
+                    </div>
+                </div>
+                
+                <!-- Satellite Orbits -->
+                <div class="satellite-orbit" style="width: 650px; height: 650px;"></div>
+                <div class="satellite-orbit" style="width: 700px; height: 700px;"></div>
+                
+                <!-- Satellites -->
+                <div class="satellite" style="animation-delay: 0s;"></div>
+                <div class="satellite" style="animation-delay: -5s; background: var(--magic-pink); box-shadow: 0 0 20px var(--magic-pink);"></div>
+                <div class="satellite" style="animation-delay: -10s; background: var(--moon-glow); box-shadow: 0 0 20px var(--moon-glow);"></div>
+            </div>
+        </div>
+        
+        <!-- Image Grid -->
+        <div class="image-grid" id="imageGrid">
+            <!-- Grid images will be added here -->
+        </div>
+    </div>
+    
+    <!-- Controls Panel -->
+    <div class="controls-panel">
+        <button class="control-btn" id="speedBtn" title="Change Speed">
+            <i class="fas fa-tachometer-alt"></i>
+        </button>
+        <button class="control-btn" id="pauseBtn" title="Pause Animations">
+            <i class="fas fa-pause"></i>
+        </button>
+        <button class="control-btn" id="shuffleBtn" title="Shuffle Images">
+            <i class="fas fa-random"></i>
+        </button>
+        <button class="control-btn" id="bloomBtn" title="Show Birthday Bloom">
+            <i class="fas fa-birthday-cake"></i>
+        </button>
+    </div>
+    
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <img class="modal-content" id="modalImage" src="" alt="Enlarged view">
+    </div>
+
+    <script>
+        // Your 13 image filenames
+        const imageFiles = [
+            "WhatsApp Image 2026-01-12 at 19.37.37.jpeg",
+            "WhatsApp Image 2026-01-12 at 19.38.29.jpeg",
+            "WhatsApp Image 2026-01-12 at 19.39.41.jpeg",
+            "WhatsApp Image 2026-01-12 at 19.41.18.jpeg",
+            "WhatsApp Image 2026-01-12 at 19.43.07.jpeg",
+            "WhatsApp Image 2026-01-12 at 19.44.15.jpeg",
+            "WhatsApp Image 2026-01-12 at 19.45.39.jpeg",
+            "WhatsApp Image 2026-01-12 at 19.46.30.jpeg",
+            "WhatsApp Image 2026-01-12 at 19.47.15.jpeg",
+            "WhatsApp Image 2026-01-12 at 19.49.04.jpeg",
+            "WhatsApp Image 2026-01-12 at 19.49.39.jpeg",
+            "WhatsApp Image 2026-01-12 at 19.50.30.jpeg",
+            "WhatsApp Image 2026-01-12 at 19.50.43.jpeg"
+        ];
+        
+        // DOM Elements
+        const starfield = document.getElementById('starfield');
+        const birthdayBloom = document.getElementById('birthdayBloom');
+        const countNumber = document.getElementById('countNumber');
+        const loadingText = document.getElementById('loadingText');
+        const outerRing = document.getElementById('outerRing');
+        const middleRing = document.getElementById('middleRing');
+        const innerRing = document.getElementById('innerRing');
+        const centralImg = document.getElementById('centralImg');
+        const centralImage = document.getElementById('centralImage');
+        const imageGrid = document.getElementById('imageGrid');
+        const moon = document.getElementById('moon');
+        
+        // Control buttons
+        const speedBtn = document.getElementById('speedBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const shuffleBtn = document.getElementById('shuffleBtn');
+        const bloomBtn = document.getElementById('bloomBtn');
+        
+        // Modal elements
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModal = document.getElementById('closeModal');
+        
+        // State variables
+        let loadedImages = [];
+        let isPaused = false;
+        let currentSpeed = 1;
+        let speeds = [0.5, 1, 1.5, 2, 2.5];
+        let speedIndex = 1;
+        
+        // Initialize the application
+        function init() {
+            createStarfield();
+            loadAllImages();
+            setupEventListeners();
+            
+            // Show initial bloom effect
+            setTimeout(() => {
+                showBirthdayBloom();
+            }, 1000);
+        }
+        
+        // Create starfield
+        function createStarfield() {
+            const starCount = 400;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random position and size
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const size = Math.random() * 3 + 1;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 3 + 2;
+                
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${left}%`;
+                star.style.top = `${top}%`;
+                star.style.animationDelay = `${delay}s`;
+                star.style.animationDuration = `${duration}s`;
+                
+                // Random color for some stars
+                if (Math.random() > 0.7) {
+                    star.style.backgroundColor = i % 3 === 0 ? '#ffd166' : i % 3 === 1 ? '#4cc9f0' : '#ff006e';
+                }
+                
+                starfield.appendChild(star);
+            }
+        }
+        
+        // Load all 13 images
+        function loadAllImages() {
+            let loadedCount = 0;
+            
+            imageFiles.forEach((filename, index) => {
+                const img = new Image();
+                img.onload = function() {
+                    loadedImages.push({
+                        src: filename,
+                        element: img,
+                        index: index
+                    });
+                    
+                    loadedCount++;
+                    updateLoadingProgress(loadedCount);
+                    
+                    // When all images are loaded
+                    if (loadedCount === imageFiles.length) {
+                        setTimeout(() => {
+                            loadingText.textContent = "Magic ready!";
+                            setupMoonImages();
+                        }, 500);
+                    }
+                };
+                
+                img.onerror = function() {
+                    // Create fallback image
+                    loadedImages.push({
+                        src: "fallback",
+                        element: createFallbackImage(index),
+                        index: index
+                    });
+                    
+                    loadedCount++;
+                    updateLoadingProgress(loadedCount);
+                    
+                    if (loadedCount === imageFiles.length) {
+                        setTimeout(() => {
+                            loadingText.textContent = "Magic ready!";
+                            setupMoonImages();
+                        }, 500);
+                    }
+                };
+                
+                // Try to load the image
+                img.src = filename;
+            });
+        }
+        
+        // Update loading progress
+        function updateLoadingProgress(count) {
+            countNumber.textContent = count;
+            const percentage = Math.round((count / imageFiles.length) * 100);
+            loadingText.textContent = `Loading magic... ${percentage}%`;
+        }
+        
+        // Create fallback image
+        function createFallbackImage(index) {
+            const colors = [
+                '#ff006e', '#4cc9f0', '#ffd166', '#3a0ca3', '#7209b7',
+                '#4361ee', '#f72585', '#4cc9f0', '#ffd166', '#06d6a0',
+                '#118ab2', '#ef476f', '#ffd166'
+            ];
+            
+            const canvas = document.createElement('canvas');
+            canvas.width = 300;
+            canvas.height = 300;
+            const ctx = canvas.getContext('2d');
+            
+            // Create cosmic background
+            const gradient = ctx.createRadialGradient(150, 150, 0, 150, 150, 150);
+            gradient.addColorStop(0, colors[index]);
+            gradient.addColorStop(1, '#000814');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 300, 300);
+            
+            // Add stars
+            for (let i = 0; i < 50; i++) {
+                const x = Math.random() * 300;
+                const y = Math.random() * 300;
+                const size = Math.random() * 3 + 1;
+                
+                ctx.fillStyle = 'white';
+                ctx.beginPath();
+                ctx.arc(x, y, size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            // Add text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Birthday', 150, 130);
+            ctx.fillText('Magic', 150, 170);
+            ctx.font = 'bold 40px Arial';
+            ctx.fillText(`${index + 1}`, 150, 230);
+            
+            const img = new Image();
+            img.src = canvas.toDataURL();
+            return img;
+        }
+        
+        // Setup moon images
+        function setupMoonImages() {
+            // Clear existing content
+            outerRing.innerHTML = '';
+            middleRing.innerHTML = '';
+            innerRing.innerHTML = '';
+            imageGrid.innerHTML = '';
+            
+            // Setup outer ring (8 images)
+            for (let i = 0; i < 8; i++) {
+                const imgIndex = i % loadedImages.length;
+                const imageData = loadedImages[imgIndex];
+                
+                const ringImage = document.createElement('div');
+                ringImage.classList.add('ring-image');
+                
+                // Position around the ring
+                const angle = (i * (360 / 8)) * (Math.PI / 180);
+                const radius = 200;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+                
+                ringImage.style.width = '90px';
+                ringImage.style.height = '90px';
+                ringImage.style.left = `calc(50% + ${x}px)`;
+                ringImage.style.top = `calc(50% + ${y}px)`;
+                ringImage.style.transform = `translate(-50%, -50%) rotate(${angle * (180 / Math.PI)}deg)`;
+                
+                const img = document.createElement('img');
+                img.src = imageData.src === "fallback" ? imageData.element.src : imageData.src;
+                img.alt = `Birthday Image ${imgIndex + 1}`;
+                
+                // Make clickable
+                ringImage.addEventListener('click', () => openImageModal(img.src));
+                
+                ringImage.appendChild(img);
+                outerRing.appendChild(ringImage);
+            }
+            
+            // Setup middle ring (6 images)
+            for (let i = 0; i < 6; i++) {
+                const imgIndex = (i + 8) % loadedImages.length;
+                const imageData = loadedImages[imgIndex];
+                
+                const ringImage = document.createElement('div');
+                ringImage.classList.add('ring-image');
+                
+                // Position around the ring
+                const angle = (i * (360 / 6)) * (Math.PI / 180);
+                const radius = 140;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+                
+                ringImage.style.width = '70px';
+                ringImage.style.height = '70px';
+                ringImage.style.left = `calc(50% + ${x}px)`;
+                ringImage.style.top = `calc(50% + ${y}px)`;
+                ringImage.style.transform = `translate(-50%, -50%) rotate(${angle * (180 / Math.PI)}deg)`;
+                
+                const img = document.createElement('img');
+                img.src = imageData.src === "fallback" ? imageData.element.src : imageData.src;
+                img.alt = `Birthday Image ${imgIndex + 1}`;
+                
+                // Make clickable
+                ringImage.addEventListener('click', () => openImageModal(img.src));
+                
+                ringImage.appendChild(img);
+                middleRing.appendChild(ringImage);
+            }
+            
+            // Setup inner ring (4 images)
+            for (let i = 0; i < 4; i++) {
+                const imgIndex = (i + 14) % loadedImages.length;
+                const imageData = loadedImages[imgIndex];
+                
+                const ringImage = document.createElement('div');
+                ringImage.classList.add('ring-image');
+                
+                // Position around the ring
+                const angle = (i * (360 / 4)) * (Math.PI / 180);
+                const radius = 80;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+                
+                ringImage.style.width = '50px';
+                ringImage.style.height = '50px';
+                ringImage.style.left = `calc(50% + ${x}px)`;
+                ringImage.style.top = `calc(50% + ${y}px)`;
+                ringImage.style.transform = `translate(-50%, -50%) rotate(${angle * (180 / Math.PI)}deg)`;
+                
+                const img = document.createElement('img');
+                img.src = imageData.src === "fallback" ? imageData.element.src : imageData.src;
+                img.alt = `Birthday Image ${imgIndex + 1}`;
+                
+                // Make clickable
+                ringImage.addEventListener('click', () => openImageModal(img.src));
+                
+                ringImage.appendChild(img);
+                innerRing.appendChild(ringImage);
+            }
+            
+            // Setup central image
+            const centralIndex = 12 % loadedImages.length;
+            const centralImageData = loadedImages[centralIndex];
+            centralImg.src = centralImageData.src === "fallback" ? centralImageData.element.src : centralImageData.src;
+            centralImg.alt = "Central Birthday Image";
+            centralImage.addEventListener('click', () => openImageModal(centralImg.src));
+            
+            // Setup image grid
+            loadedImages.forEach((imageData, index) => {
+                const gridItem = document.createElement('div');
+                gridItem.classList.add('grid-item');
+                
+                const img = document.createElement('img');
+                img.src = imageData.src === "fallback" ? imageData.element.src : imageData.src;
+                img.alt = `Birthday Image ${index + 1}`;
+                
+                const overlay = document.createElement('div');
+                overlay.classList.add('grid-overlay');
+                overlay.innerHTML = `<small>Birthday Photo ${index + 1}</small>`;
+                
+                // Make clickable
+                gridItem.addEventListener('click', () => openImageModal(img.src));
+                
+                gridItem.appendChild(img);
+                gridItem.appendChild(overlay);
+                imageGrid.appendChild(gridItem);
+            });
+        }
+        
+        // Open image modal
+        function openImageModal(imageSrc) {
+            modalImage.src = imageSrc;
+            imageModal.style.display = 'flex';
+        }
+        
+        // Show birthday bloom effect
+        function showBirthdayBloom() {
+            birthdayBloom.style.opacity = '1';
+            
+            // Hide after animation
+            setTimeout(() => {
+                birthdayBloom.style.opacity = '0';
+            }, 3000);
+        }
+        
+        // Change animation speed
+        function changeSpeed() {
+            speedIndex = (speedIndex + 1) % speeds.length;
+            currentSpeed = speeds[speedIndex];
+            
+            // Update all animations
+            const rings = [outerRing, middleRing, innerRing];
+            rings.forEach(ring => {
+                const currentAnimation = window.getComputedStyle(ring).animation;
+                const newAnimation = currentAnimation.replace(/\d+s/g, (match) => {
+                    const time = parseFloat(match);
+                    return `${time / currentSpeed}s`;
+                });
+                ring.style.animation = newAnimation;
+            });
+            
+            // Update button
+            speedBtn.innerHTML = `<i class="fas fa-tachometer-alt"></i> x${currentSpeed}`;
+            speedBtn.classList.add('active');
+            
+            setTimeout(() => {
+                speedBtn.classList.remove('active');
+            }, 1000);
+        }
+        
+        // Toggle pause/resume
+        function togglePause() {
+            isPaused = !isPaused;
+            
+            const allAnimatedElements = document.querySelectorAll('*');
+            
+            if (isPaused) {
+                // Pause all animations
+                allAnimatedElements.forEach(el => {
+                    el.style.animationPlayState = 'paused';
+                });
+                
+                pauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                pauseBtn.title = 'Resume Animations';
+                pauseBtn.classList.add('active');
+            } else {
+                // Resume all animations
+                allAnimatedElements.forEach(el => {
+                    el.style.animationPlayState = 'running';
+                });
+                
+                pauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                pauseBtn.title = 'Pause Animations';
+                pauseBtn.classList.remove('active');
+            }
+        }
+        
+        // Shuffle images
+        function shuffleImages() {
+            // Shuffle loaded images array
+            for (let i = loadedImages.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [loadedImages[i], loadedImages[j]] = [loadedImages[j], loadedImages[i]];
+            }
+            
+            // Re-setup moon images
+            setupMoonImages();
+            
+            // Visual feedback
+            shuffleBtn.classList.add('active');
+            setTimeout(() => {
+                shuffleBtn.classList.remove('active');
+            }, 1000);
+        }
+        
+        // Set up event listeners
+        function setupEventListeners() {
+            // Control buttons
+            speedBtn.addEventListener('click', changeSpeed);
+            pauseBtn.addEventListener('click', togglePause);
+            shuffleBtn.addEventListener('click', shuffleImages);
+            bloomBtn.addEventListener('click', showBirthdayBloom);
+            
+            // Modal
+            closeModal.addEventListener('click', () => {
+                imageModal.style.display = 'none';
+            });
+            
+            imageModal.addEventListener('click', (e) => {
+                if (e.target === imageModal) {
+                    imageModal.style.display = 'none';
+                }
+            });
+            
+            // Moon click effect
+            moon.addEventListener('click', () => {
+                moon.style.animation = 'none';
+                setTimeout(() => {
+                    moon.style.animation = 'moonGlow 8s ease-in-out infinite';
+                }, 10);
+                
+                // Add extra glow
+                moon.style.boxShadow = '0 0 150px rgba(255, 215, 0, 0.8), 0 0 300px rgba(255, 0, 110, 0.6), inset 0 0 60px rgba(0, 0, 0, 0.3)';
+                setTimeout(() => {
+                    moon.style.boxShadow = '';
+                }, 1000);
+            });
+            
+            // Add shooting stars on click
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('control-btn') || e.target.closest('.control-btn')) return;
+                
+                // Create shooting star
+                const shootingStar = document.createElement('div');
+                shootingStar.style.position = 'fixed';
+                shootingStar.style.left = `${e.clientX}px`;
+                shootingStar.style.top = `${e.clientY}px`;
+                shootingStar.style.width = '0';
+                shootingStar.style.height = '0';
+                shootingStar.style.borderLeft = '100px solid transparent';
+                shootingStar.style.borderRight = '100px solid transparent';
+                shootingStar.style.borderBottom = '3px solid rgba(255, 215, 0, 0.8)';
+                shootingStar.style.transform = 'rotate(45deg)';
+                shootingStar.style.zIndex = '5';
+                shootingStar.style.pointerEvents = 'none';
+                
+                document.body.appendChild(shootingStar);
+                
+                // Animate
+                shootingStar.animate([
+                    { opacity: 0, transform: 'rotate(45deg) scale(0)' },
+                    { opacity: 1, transform: 'rotate(45deg) scale(1)' },
+                    { opacity: 0, transform: 'rotate(45deg) scale(0.5) translateX(200px) translateY(200px)' }
+                ], {
+                    duration: 1500,
+                    easing: 'ease-out'
+                });
+                
+                // Remove after animation
+                setTimeout(() => {
+                    if (shootingStar.parentNode) {
+                        shootingStar.parentNode.removeChild(shootingStar);
+                    }
+                }, 1500);
+            });
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

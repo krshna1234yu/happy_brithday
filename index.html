@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magical Birthday House & Moon Gallery</title>
+    <title>Complete Birthday Magic Experience</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -14,9 +14,12 @@
             --moon-glow: #ffd700;
             --magic-pink: #ff006e;
             --magic-blue: #4cc9f0;
-            --house-color: #2d1b69;
-            --house-roof: #5a189a;
-            --balloon-colors: #ff006e, #4cc9f0, #ffd700, #06d6a0, #7209b7;
+            --dark-house: #0a0a0f;
+            --dark-house-shadow: #000000;
+            --window-glow: #ffd700;
+            --frame-gradient: linear-gradient(45deg, #ff006e, #4cc9f0, #9d4edd);
+            --circular-bg: rgba(10, 10, 30, 0.7);
+            --candle-flame: #ff9d00;
         }
         
         * {
@@ -27,7 +30,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, var(--space-black) 0%, var(--space-purple) 100%);
+            background: linear-gradient(180deg, var(--space-black) 0%, var(--space-purple) 100%);
             color: white;
             min-height: 100vh;
             overflow-x: hidden;
@@ -91,7 +94,7 @@
             color: transparent;
             margin-bottom: 20px;
             letter-spacing: 2px;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            text-shadow: 0 0 30px rgba(157, 78, 221, 0.3);
             position: relative;
             display: inline-block;
         }
@@ -123,7 +126,7 @@
             flex-direction: column;
             align-items: center;
             gap: 50px;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
         }
         
         /* Moon Container */
@@ -228,182 +231,637 @@
             object-fit: cover;
         }
         
-        /* Birthday House Section */
-        .house-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 80px 0;
+        /* Big Dark House Section */
+        .dark-house-section {
+            margin: 100px 0;
             padding: 60px 20px;
-            position: relative;
+            background: rgba(10, 10, 15, 0.5);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .house-container {
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            background: linear-gradient(to right, #ffffff, #9d4edd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
+        }
+        
+        /* Big Dark House */
+        .big-dark-house {
             position: relative;
-            width: 400px;
-            height: 400px;
+            width: 800px;
+            height: 700px;
+            margin: 0 auto;
             cursor: pointer;
             transition: transform 0.3s ease;
         }
         
-        .house-container:hover {
-            transform: scale(1.05);
+        .big-dark-house:hover {
+            transform: scale(1.01);
         }
         
-        /* Birthday House */
-        .birthday-house {
+        /* Big House Structure */
+        .big-house-structure {
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 300px;
-            height: 250px;
+            width: 700px;
+            height: 600px;
         }
         
-        .house-roof {
+        .big-house-roof {
             position: absolute;
             top: 0;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 150px solid transparent;
-            border-right: 150px solid transparent;
-            border-bottom: 100px solid var(--house-roof);
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+            border-left: 350px solid transparent;
+            border-right: 350px solid transparent;
+            border-bottom: 200px solid var(--dark-house-shadow);
+            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.9));
+            z-index: 2;
         }
         
-        .house-body {
+        .big-roof-detail {
             position: absolute;
-            top: 100px;
+            top: 30px;
             left: 50%;
             transform: translateX(-50%);
-            width: 250px;
-            height: 150px;
-            background-color: var(--house-color);
-            border-radius: 10px 10px 0 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-            overflow: hidden;
+            width: 600px;
+            height: 15px;
+            background: linear-gradient(90deg, transparent, #222222, transparent);
+            border-radius: 8px;
         }
         
-        .house-window {
+        .big-house-body {
             position: absolute;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #ffd700, #ff9e00);
-            border-radius: 10px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            top: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: linear-gradient(145deg, var(--dark-house), #000000);
+            border-radius: 20px 20px 0 0;
             box-shadow: 
-                inset 0 0 20px rgba(255, 255, 255, 0.5),
-                0 0 20px rgba(255, 215, 0, 0.7);
-            animation: windowGlow 3s infinite alternate;
+                0 20px 60px rgba(0, 0, 0, 0.9),
+                inset 0 0 50px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            z-index: 1;
         }
         
-        .window-left {
-            top: 30px;
-            left: 40px;
-        }
-        
-        .window-right {
-            top: 30px;
-            right: 40px;
-        }
-        
-        .house-door {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 100px;
-            background: linear-gradient(to bottom, #5a189a, #3a0ca3);
-            border-radius: 10px 10px 0 0;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
-        }
-        
-        .door-knob {
+        /* House Image Display (Inside House) */
+        .house-image-display {
             position: absolute;
             top: 50%;
-            right: 15px;
-            width: 12px;
-            height: 12px;
-            background-color: var(--moon-glow);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--moon-glow);
-        }
-        
-        /* Balloons Container */
-        .balloons-container {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .balloon {
-            position: absolute;
-            bottom: 0;
-            border-radius: 50%;
-            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
-            animation: floatUp 15s infinite ease-in-out;
-        }
-        
-        .balloon-string {
-            position: absolute;
-            bottom: 0;
             left: 50%;
-            width: 2px;
-            background: linear-gradient(to top, white, transparent);
-        }
-        
-        /* Image that appears above house */
-        .house-image {
-            position: absolute;
-            top: -350px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 250px;
-            height: 250px;
-            border-radius: 20px;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 300px;
+            border-radius: 15px;
             overflow: hidden;
             box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.8),
-                0 0 50px var(--magic-pink);
+                inset 0 0 30px rgba(0, 0, 0, 0.9),
+                0 0 40px rgba(255, 0, 110, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            z-index: 3;
             opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            z-index: 100;
-            cursor: pointer;
+            transition: opacity 0.5s ease;
         }
         
-        .house-image.active {
+        .house-image-display.active {
             opacity: 1;
-            transform: translateX(-50%) translateY(-20px);
         }
         
-        .house-image img {
+        .house-image-display img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
         
-        .house-image-close {
+        /* Small Moon in Sky */
+        .small-moon {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 30px;
-            height: 30px;
-            background: rgba(0, 0, 0, 0.7);
+            top: 50px;
+            right: 100px;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%, var(--moon-light), #c0c0c0);
             border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            z-index: 1;
+            animation: smallMoonBlink 6s infinite alternate;
+        }
+        
+        .small-moon-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.4), transparent 70%);
+            animation: smallMoonPulse 3s infinite alternate;
+        }
+        
+        /* Black Tree */
+        .black-tree {
+            position: absolute;
+            bottom: 0;
+            left: 50px;
+            width: 150px;
+            height: 300px;
+            z-index: 2;
+        }
+        
+        .tree-trunk {
+            position: absolute;
+            bottom: 0;
+            left: 70px;
+            width: 30px;
+            height: 150px;
+            background: linear-gradient(to right, #1a1a1a, #000000, #1a1a1a);
+            border-radius: 5px;
+        }
+        
+        .tree-branch {
+            position: absolute;
+            background: linear-gradient(to bottom, #000000, #1a1a1a);
+            border-radius: 10px;
+        }
+        
+        .tree-branch.branch-1 {
+            width: 120px;
+            height: 25px;
+            top: 120px;
+            left: 0;
+            transform: rotate(-20deg);
+        }
+        
+        .tree-branch.branch-2 {
+            width: 100px;
+            height: 20px;
+            top: 90px;
+            left: 20px;
+            transform: rotate(15deg);
+        }
+        
+        .tree-branch.branch-3 {
+            width: 80px;
+            height: 18px;
+            top: 60px;
+            left: 40px;
+            transform: rotate(-10deg);
+        }
+        
+        .tree-branch.branch-4 {
+            width: 60px;
+            height: 15px;
+            top: 40px;
+            left: 60px;
+            transform: rotate(5deg);
+        }
+        
+        /* Crow */
+        .crow {
+            position: absolute;
+            top: 150px;
+            left: 100px;
+            width: 40px;
+            height: 30px;
+            z-index: 4;
+            animation: crowFly 15s infinite linear;
+        }
+        
+        .crow-body {
+            position: absolute;
+            width: 30px;
+            height: 20px;
+            background: #000000;
+            border-radius: 50% 50% 40% 40%;
+        }
+        
+        .crow-head {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #000000;
+            border-radius: 50%;
+            top: -5px;
+            left: 10px;
+        }
+        
+        .crow-beak {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 8px solid #ff9900;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            top: 3px;
+            left: 25px;
+        }
+        
+        .crow-wing {
+            position: absolute;
+            width: 25px;
+            height: 15px;
+            background: #000000;
+            border-radius: 50% 50% 0 0;
+            top: 5px;
+            left: 5px;
+            transform: rotate(-20deg);
+            animation: crowWingFlap 0.8s infinite alternate;
+        }
+        
+        .crow-tail {
+            position: absolute;
+            width: 15px;
+            height: 10px;
+            background: #000000;
+            border-radius: 0 0 50% 50%;
+            top: 15px;
+            left: -5px;
+            transform: rotate(10deg);
+        }
+        
+        /* Big House Windows */
+        .big-house-window {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #1a1a1a, #000000);
+            border-radius: 15px;
+            border: 4px solid #333333;
+            box-shadow: 
+                inset 0 0 40px rgba(0, 0, 0, 0.9),
+                0 0 0 2px rgba(255, 215, 0, 0.1);
+            overflow: hidden;
+            z-index: 2;
+        }
+        
+        .big-window-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.4), transparent 70%);
+            animation: windowPulse 4s infinite alternate;
+        }
+        
+        .big-window-left {
+            top: 60px;
+            left: 80px;
+        }
+        
+        .big-window-right {
+            top: 60px;
+            right: 80px;
+        }
+        
+        /* Window Image Display - SMALL IMAGES */
+        .window-image-display {
+            position: absolute;
+            width: 70%; /* Smaller size */
+            height: 70%; /* Smaller size */
+            top: 15%; /* Centered */
+            left: 15%; /* Centered */
+            border-radius: 8px;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.3s ease;
+            z-index: 3;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .window-image-display:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+        
+        .window-image-display.active {
+            opacity: 0.9;
+        }
+        
+        .window-image-display img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .big-house-door {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 180px;
+            background: linear-gradient(to bottom, #000000, #1a1a1a);
+            border-radius: 15px 15px 0 0;
+            border: 4px solid #333333;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.9);
+            overflow: hidden;
+            z-index: 2;
+        }
+        
+        .big-door-pattern {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            bottom: 30px;
+            border: 3px solid #333333;
+            border-radius: 8px;
+        }
+        
+        .big-door-knob {
+            position: absolute;
+            top: 50%;
+            right: 25px;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #666666, #333333);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+            transform: translateY(-50%);
+        }
+        
+        /* Balloons */
+        .big-balloons-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .big-balloon {
+            position: absolute;
+            bottom: 0;
+            border-radius: 50%;
+            filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.6));
+            animation: bigFloatUp 30s infinite linear;
+        }
+        
+        .big-balloon-string {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.4), transparent);
+        }
+        
+        /* Animations */
+        @keyframes smallMoonBlink {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 40px rgba(255, 215, 0, 1); }
+        }
+        
+        @keyframes smallMoonPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        
+        @keyframes crowFly {
+            0% { transform: translateX(-100px) translateY(0); }
+            25% { transform: translateX(50px) translateY(-30px); }
+            50% { transform: translateX(200px) translateY(10px); }
+            75% { transform: translateX(350px) translateY(-20px); }
+            100% { transform: translateX(500px) translateY(0); }
+        }
+        
+        @keyframes crowWingFlap {
+            0% { transform: rotate(-20deg) scaleY(1); }
+            100% { transform: rotate(-10deg) scaleY(0.8); }
+        }
+        
+        /* Left to Right Image Slider */
+        .image-slider-section {
+            margin: 100px 0;
+            padding: 60px 20px;
+            background: rgba(10, 10, 15, 0.5);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .slider-container {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin-top: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .slider-track {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            animation: slideLeftToRight 40s linear infinite;
+        }
+        
+        .slider-image {
+            width: 300px;
+            height: 100%;
+            margin-right: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .slider-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--magic-pink);
+        }
+        
+        .slider-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* FIXED: Rotating Circular Motion Section */
+        .circular-motion-section {
+            margin: 100px 0;
+            padding: 60px 20px;
+            background: rgba(10, 10, 30, 0.5);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .circular-motion-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 400px;
+        }
+        
+        .circular-orbit {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+        }
+        
+        /* FIXED: Circular orbit images */
+        .orbiting-image {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+            cursor: pointer;
+            top: 50%;
+            left: 50%;
+            transform-origin: 0 0;
+            z-index: 2;
+        }
+        
+        .orbiting-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .circular-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--magic-pink), var(--space-purple));
+            border-radius: 50%;
+            box-shadow: 0 0 50px var(--magic-pink);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: white;
+            z-index: 5;
+        }
+        
+        /* NEW: Blow Candle Frame Section */
+        .blow-candle-section {
+            margin: 100px 0;
+            padding: 60px 20px;
+            background: rgba(10, 10, 30, 0.5);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .candle-frame-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 500px;
+        }
+        
+        .cake {
+            width: 300px;
+            height: 120px;
+            background: linear-gradient(to bottom, #8b4513, #a0522d);
+            border-radius: 15px 15px 0 0;
+            position: relative;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        }
+        
+        .cake::after {
+            content: '';
+            position: absolute;
+            width: 320px;
+            height: 30px;
+            background: linear-gradient(to bottom, #d2691e, #8b4513);
+            border-radius: 50%;
+            bottom: -15px;
+            left: -10px;
+        }
+        
+        .candle {
+            position: absolute;
+            top: -160px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 100px;
+            background: linear-gradient(to bottom, white, #f0f0f0);
+            border-radius: 10px;
+            z-index: 2;
+        }
+        
+        .flame {
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 60px;
+            background: radial-gradient(ellipse at center, #ffff00, #ff9900, #ff3300);
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 40px rgba(255, 153, 0, 0.8);
+            animation: flicker 0.5s infinite alternate;
+            cursor: pointer;
+            z-index: 3;
+        }
+        
+        .blow-area {
+            position: absolute;
+            top: -220px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             cursor: pointer;
-            z-index: 101;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+            z-index: 4;
+        }
+        
+        .blow-area:hover {
+            opacity: 0.8;
+        }
+        
+        .wish-text {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            color: var(--moon-glow);
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s;
         }
         
         /* Controls Panel */
@@ -465,7 +923,6 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            z-index: 100;
         }
         
         .image-count {
@@ -525,7 +982,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(0, 0, 0, 0.98);
             display: none;
             justify-content: center;
             align-items: center;
@@ -579,16 +1036,32 @@
             50% { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 60px var(--moon-glow), 0 0 120px rgba(255, 215, 0, 0.7); }
         }
         
-        @keyframes windowGlow {
-            0% { box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 215, 0, 0.7); }
-            100% { box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 215, 0, 0.9); }
+        @keyframes windowPulse {
+            0% { opacity: 0.2; }
+            100% { opacity: 0.8; }
         }
         
-        @keyframes floatUp {
+        @keyframes bigFloatUp {
             0% { transform: translateY(0) rotate(0deg); opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
-            100% { transform: translateY(-1000px) rotate(20deg); opacity: 0; }
+            100% { transform: translateY(-1500px) rotate(20deg); opacity: 0; }
+        }
+        
+        @keyframes slideLeftToRight {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* NEW Animations */
+        @keyframes orbit {
+            0% { transform: rotate(0deg) translateX(175px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(175px) rotate(-360deg); }
+        }
+        
+        @keyframes flicker {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1); }
         }
         
         @keyframes textBloom {
@@ -616,28 +1089,65 @@
             .middle-ring { width: 220px; height: 220px; }
             .inner-ring { width: 130px; height: 130px; }
             
-            .bloom-text {
-                font-size: 6rem;
+            .big-dark-house {
+                width: 600px;
+                height: 550px;
             }
             
-            .house-container {
-                width: 350px;
+            .big-house-structure {
+                width: 550px;
+                height: 500px;
+            }
+            
+            .big-house-roof {
+                border-left: 275px solid transparent;
+                border-right: 275px solid transparent;
+                border-bottom: 150px solid var(--dark-house-shadow);
+            }
+            
+            .big-roof-detail {
+                width: 500px;
+            }
+            
+            .big-house-body {
+                width: 500px;
                 height: 350px;
             }
             
-            .birthday-house {
-                width: 250px;
+            .house-image-display {
+                width: 350px;
+                height: 250px;
             }
             
-            .house-roof {
-                border-left: 125px solid transparent;
-                border-right: 125px solid transparent;
-                border-bottom: 80px solid var(--house-roof);
+            .small-moon {
+                top: 40px;
+                right: 80px;
+                width: 50px;
+                height: 50px;
             }
             
-            .house-body {
-                width: 200px;
-                top: 80px;
+            .black-tree {
+                left: 30px;
+                height: 250px;
+            }
+            
+            .crow {
+                top: 120px;
+                left: 80px;
+            }
+            
+            .circular-orbit {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .orbiting-image {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .bloom-text {
+                font-size: 6rem;
             }
         }
         
@@ -664,44 +1174,134 @@
                 height: 80px;
             }
             
-            .house-container {
-                width: 280px;
-                height: 280px;
+            .big-dark-house {
+                width: 100%;
+                height: 400px;
+                max-width: 400px;
             }
             
-            .birthday-house {
-                width: 200px;
+            .big-house-structure {
+                width: 100%;
+                max-width: 350px;
+                height: 350px;
             }
             
-            .house-roof {
-                border-left: 100px solid transparent;
-                border-right: 100px solid transparent;
-                border-bottom: 70px solid var(--house-roof);
+            .big-house-roof {
+                border-left: 175px solid transparent;
+                border-right: 175px solid transparent;
+                border-bottom: 100px solid var(--dark-house-shadow);
             }
             
-            .house-body {
-                width: 160px;
-                top: 70px;
-                height: 120px;
+            .big-roof-detail {
+                width: 300px;
+                height: 10px;
             }
             
-            .house-window {
+            .big-house-body {
+                width: 300px;
+                height: 250px;
+                top: 100px;
+            }
+            
+            .big-house-window {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .big-window-left {
+                left: 40px;
+            }
+            
+            .big-window-right {
+                right: 40px;
+            }
+            
+            .house-image-display {
+                width: 250px;
+                height: 180px;
+            }
+            
+            .big-house-door {
+                width: 100px;
+                height: 140px;
+            }
+            
+            .small-moon {
+                top: 30px;
+                right: 60px;
                 width: 40px;
                 height: 40px;
             }
             
-            .window-left {
+            .black-tree {
                 left: 20px;
-            }
-            
-            .window-right {
-                right: 20px;
-            }
-            
-            .house-image {
-                width: 200px;
                 height: 200px;
-                top: -250px;
+                width: 120px;
+            }
+            
+            .tree-trunk {
+                left: 50px;
+                width: 25px;
+                height: 120px;
+            }
+            
+            .tree-branch.branch-1 {
+                width: 100px;
+                top: 100px;
+            }
+            
+            .tree-branch.branch-2 {
+                width: 80px;
+                top: 80px;
+            }
+            
+            .tree-branch.branch-3 {
+                width: 60px;
+                top: 60px;
+            }
+            
+            .tree-branch.branch-4 {
+                width: 40px;
+                top: 45px;
+            }
+            
+            .crow {
+                top: 100px;
+                left: 60px;
+                transform: scale(0.8);
+            }
+            
+            .slider-container {
+                height: 180px;
+            }
+            
+            .slider-image {
+                width: 200px;
+            }
+            
+            .circular-orbit {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .orbiting-image {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .circular-center {
+                width: 80px;
+                height: 80px;
+                font-size: 1.5rem;
+            }
+            
+            .cake {
+                width: 250px;
+                height: 100px;
+            }
+            
+            .cake::after {
+                width: 270px;
             }
             
             .controls-panel {
@@ -722,6 +1322,119 @@
             .bloom-text {
                 font-size: 4rem;
                 letter-spacing: 5px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .big-dark-house {
+                height: 350px;
+            }
+            
+            .big-house-structure {
+                height: 300px;
+            }
+            
+            .big-house-roof {
+                border-left: 125px solid transparent;
+                border-right: 125px solid transparent;
+                border-bottom: 80px solid var(--dark-house-shadow);
+            }
+            
+            .big-house-body {
+                width: 250px;
+                height: 220px;
+            }
+            
+            .house-image-display {
+                width: 200px;
+                height: 150px;
+            }
+            
+            .big-house-window {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .big-window-left {
+                left: 30px;
+                top: 40px;
+            }
+            
+            .big-window-right {
+                right: 30px;
+                top: 40px;
+            }
+            
+            .small-moon {
+                top: 20px;
+                right: 40px;
+                width: 30px;
+                height: 30px;
+            }
+            
+            .black-tree {
+                left: 10px;
+                height: 150px;
+                width: 100px;
+            }
+            
+            .tree-trunk {
+                left: 40px;
+                width: 20px;
+                height: 90px;
+            }
+            
+            .tree-branch.branch-1 {
+                width: 80px;
+                top: 80px;
+            }
+            
+            .tree-branch.branch-2 {
+                width: 60px;
+                top: 65px;
+            }
+            
+            .tree-branch.branch-3 {
+                width: 50px;
+                top: 50px;
+            }
+            
+            .tree-branch.branch-4 {
+                width: 30px;
+                top: 40px;
+            }
+            
+            .crow {
+                top: 80px;
+                left: 40px;
+                transform: scale(0.6);
+            }
+            
+            .slider-container {
+                height: 150px;
+            }
+            
+            .slider-image {
+                width: 160px;
+            }
+            
+            .circular-orbit {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .orbiting-image {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .cake {
+                width: 200px;
+                height: 80px;
+            }
+            
+            .cake::after {
+                width: 220px;
             }
         }
     </style>
@@ -750,12 +1463,13 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <h1>Moon Magic Birthday</h1>
-            <p class="subtitle">Your birthday images dancing in celestial harmony within the magical moon</p>
+            <h1>Complete Birthday Magic</h1>
+            <p class="subtitle">Moon gallery, big dark house, image slider, circular motion, and blow candle - all in one magical celebration!</p>
         </div>
         
-        <!-- Moon Section -->
+        <!-- Moon Gallery Section -->
         <div class="moon-section">
+            <h2 class="section-title">Magical Moon Gallery</h2>
             <div class="moon-container">
                 <!-- Moon -->
                 <div class="moon" id="moon">
@@ -787,36 +1501,124 @@
             </div>
         </div>
         
-        <!-- Birthday House Section -->
-        <div class="house-section">
-            <!-- Image that appears above house -->
-            <div class="house-image" id="houseImage">
-                <div class="house-image-close" id="closeHouseImage">&times;</div>
-                <img src="" alt="Birthday Image from House" id="houseImageContent">
-            </div>
+        <!-- Big Dark House Section -->
+        <div class="dark-house-section">
+            <h2 class="section-title">Big Dark Birthday House</h2>
+            <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <i class="fas fa-mouse-pointer"></i> Click the dark house to reveal birthday images inside it!
+            </p>
             
-            <div class="house-container" id="houseContainer">
+            <div class="big-dark-house" id="bigDarkHouse">
                 <!-- Balloons -->
-                <div class="balloons-container" id="balloonsContainer">
+                <div class="big-balloons-container" id="bigBalloonsContainer">
                     <!-- Balloons will be generated here -->
                 </div>
                 
-                <!-- Birthday House -->
-                <div class="birthday-house">
-                    <div class="house-roof"></div>
-                    <div class="house-body">
-                        <div class="house-window window-left"></div>
-                        <div class="house-window window-right"></div>
-                        <div class="house-door">
-                            <div class="door-knob"></div>
+                <!-- House Image Display (Inside House) -->
+                <div class="house-image-display" id="houseImageDisplay">
+                    <img src="" alt="Birthday Image in House" id="houseImageContent">
+                </div>
+                
+                <!-- Small Moon in Sky -->
+                <div class="small-moon" id="smallMoon">
+                    <div class="small-moon-glow"></div>
+                </div>
+                
+                <!-- Black Tree -->
+                <div class="black-tree" id="blackTree">
+                    <div class="tree-trunk"></div>
+                    <div class="tree-branch branch-1"></div>
+                    <div class="tree-branch branch-2"></div>
+                    <div class="tree-branch branch-3"></div>
+                    <div class="tree-branch branch-4"></div>
+                </div>
+                
+                <!-- Crow -->
+                <div class="crow" id="crow">
+                    <div class="crow-body"></div>
+                    <div class="crow-head"></div>
+                    <div class="crow-beak"></div>
+                    <div class="crow-wing"></div>
+                    <div class="crow-tail"></div>
+                </div>
+                
+                <!-- Big Dark Birthday House -->
+                <div class="big-house-structure">
+                    <div class="big-house-roof">
+                        <div class="big-roof-detail"></div>
+                    </div>
+                    <div class="big-house-body">
+                        <div class="big-house-window big-window-left">
+                            <div class="big-window-glow"></div>
+                            <!-- SMALL Window image display -->
+                            <div class="window-image-display left-window-image">
+                                <img src="" alt="Window Image" id="leftWindowImage">
+                            </div>
+                        </div>
+                        <div class="big-house-window big-window-right">
+                            <div class="big-window-glow"></div>
+                            <!-- SMALL Window image display -->
+                            <div class="window-image-display right-window-image">
+                                <img src="" alt="Window Image" id="rightWindowImage">
+                            </div>
+                        </div>
+                        <div class="big-house-door">
+                            <div class="big-door-pattern"></div>
+                            <div class="big-door-knob"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <p style="margin-top: 30px; color: rgba(255,255,255,0.7); text-align: center; max-width: 500px;">
-                <i class="fas fa-mouse-pointer"></i> Click the house to reveal a special birthday image!
+        </div>
+        
+        <!-- Left to Right Image Slider -->
+        <div class="image-slider-section">
+            <h2 class="section-title">Continuous Birthday Image Slider</h2>
+            <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <i class="fas fa-arrows-alt-h"></i> Images continuously moving left to right. Click any image to view it larger.
             </p>
+            
+            <div class="slider-container">
+                <div class="slider-track" id="sliderTrack">
+                    <!-- Slider images will be added here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- NEW: Rotating Circular Motion Section -->
+        <div class="circular-motion-section">
+            <h2 class="section-title">Rotating Circular Motion</h2>
+            <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <i class="fas fa-sync-alt"></i> Images orbiting in circular motion. Click any image to view it larger.
+            </p>
+            
+            <div class="circular-motion-container">
+                <div class="circular-orbit" id="circularOrbit">
+                    <!-- Orbiting images will be added here -->
+                </div>
+                <div class="circular-center">
+                    <i class="fas fa-birthday-cake"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- NEW: Blow Candle Frame Section -->
+        <div class="blow-candle-section">
+            <h2 class="section-title">Blow the Birthday Candle</h2>
+            <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <i class="fas fa-wind"></i> Click the flame or blow area to blow out the candle and make a wish!
+            </p>
+            
+            <div class="candle-frame-container">
+                <div class="cake">
+                    <div class="candle"></div>
+                    <div class="flame" id="candleFlame"></div>
+                    <div class="blow-area" id="blowArea">
+                        <span>BLOW</span>
+                    </div>
+                </div>
+                <div class="wish-text" id="wishText">Make a wish! 🎂</div>
+            </div>
         </div>
     </div>
     
@@ -828,11 +1630,14 @@
         <button class="control-btn" id="pauseBtn" title="Pause Animations">
             <i class="fas fa-pause"></i>
         </button>
+        <button class="control-btn" id="changeHouseImageBtn" title="Change House Image">
+            <i class="fas fa-home"></i>
+        </button>
         <button class="control-btn" id="bloomBtn" title="Show Birthday Bloom">
             <i class="fas fa-birthday-cake"></i>
         </button>
-        <button class="control-btn" id="resetBtn" title="Reset House Image">
-            <i class="fas fa-home"></i>
+        <button class="control-btn" id="resetCandleBtn" title="Reset Candle">
+            <i class="fas fa-fire"></i>
         </button>
     </div>
     
@@ -871,18 +1676,33 @@
         const centralImg = document.getElementById('centralImg');
         const centralImage = document.getElementById('centralImage');
         
-        // House elements
-        const houseContainer = document.getElementById('houseContainer');
-        const balloonsContainer = document.getElementById('balloonsContainer');
-        const houseImage = document.getElementById('houseImage');
+        // Big House elements
+        const bigDarkHouse = document.getElementById('bigDarkHouse');
+        const bigBalloonsContainer = document.getElementById('bigBalloonsContainer');
+        const houseImageDisplay = document.getElementById('houseImageDisplay');
         const houseImageContent = document.getElementById('houseImageContent');
-        const closeHouseImage = document.getElementById('closeHouseImage');
+        
+        // Window image elements
+        const leftWindowImage = document.getElementById('leftWindowImage');
+        const rightWindowImage = document.getElementById('rightWindowImage');
+        
+        // Slider elements
+        const sliderTrack = document.getElementById('sliderTrack');
+        
+        // NEW: Circular motion elements
+        const circularOrbit = document.getElementById('circularOrbit');
+        
+        // NEW: Candle elements
+        const candleFlame = document.getElementById('candleFlame');
+        const blowArea = document.getElementById('blowArea');
+        const wishText = document.getElementById('wishText');
         
         // Control buttons
         const speedBtn = document.getElementById('speedBtn');
         const pauseBtn = document.getElementById('pauseBtn');
+        const changeHouseImageBtn = document.getElementById('changeHouseImageBtn');
         const bloomBtn = document.getElementById('bloomBtn');
-        const resetBtn = document.getElementById('resetBtn');
+        const resetCandleBtn = document.getElementById('resetCandleBtn');
         
         // Modal elements
         const imageModal = document.getElementById('imageModal');
@@ -896,11 +1716,12 @@
         let speeds = [0.5, 1, 1.5, 2, 2.5];
         let speedIndex = 1;
         let currentHouseImageIndex = 0;
+        let isCandleBlown = false;
         
         // Initialize the application
         function init() {
             createStarfield();
-            createBalloons();
+            createBigBalloons();
             loadAllImages();
             setupEventListeners();
             
@@ -941,22 +1762,22 @@
             }
         }
         
-        // Create balloons
-        function createBalloons() {
-            const balloonColors = ['#ff006e', '#4cc9f0', '#ffd700', '#06d6a0', '#7209b7'];
-            const balloonCount = 15;
+        // Create big balloons
+        function createBigBalloons() {
+            const balloonColors = ['#ff006e', '#4cc9f0', '#9d4edd', '#ff5400', '#7209b7'];
+            const balloonCount = 25;
             
             for (let i = 0; i < balloonCount; i++) {
                 // Create balloon
                 const balloon = document.createElement('div');
-                balloon.classList.add('balloon');
+                balloon.classList.add('big-balloon');
                 
                 // Random properties
-                const size = Math.random() * 60 + 40;
+                const size = Math.random() * 80 + 50;
                 const color = balloonColors[Math.floor(Math.random() * balloonColors.length)];
                 const left = Math.random() * 100;
-                const delay = Math.random() * 10;
-                const duration = Math.random() * 10 + 15;
+                const delay = Math.random() * 20;
+                const duration = Math.random() * 20 + 30;
                 
                 balloon.style.width = `${size}px`;
                 balloon.style.height = `${size * 1.2}px`;
@@ -967,12 +1788,12 @@
                 
                 // Create balloon string
                 const string = document.createElement('div');
-                string.classList.add('balloon-string');
+                string.classList.add('big-balloon-string');
                 string.style.height = `${size * 2}px`;
-                string.style.left = `calc(50% - 1px)`;
+                string.style.left = `calc(50% - 1.5px)`;
                 
                 balloon.appendChild(string);
-                balloonsContainer.appendChild(balloon);
+                bigBalloonsContainer.appendChild(balloon);
             }
         }
         
@@ -997,6 +1818,10 @@
                         setTimeout(() => {
                             loadingText.textContent = "Magic ready!";
                             setupMoonImages();
+                            setupSliderImages();
+                            setupCircularOrbit();
+                            setupWindowImages(); // Setup small window images
+                            showHouseImage();
                         }, 500);
                     }
                 };
@@ -1016,6 +1841,10 @@
                         setTimeout(() => {
                             loadingText.textContent = "Magic ready!";
                             setupMoonImages();
+                            setupSliderImages();
+                            setupCircularOrbit();
+                            setupWindowImages(); // Setup small window images
+                            showHouseImage();
                         }, 500);
                     }
                 };
@@ -1035,28 +1864,28 @@
         // Create fallback image
         function createFallbackImage(index) {
             const colors = [
-                '#ff006e', '#4cc9f0', '#ffd166', '#3a0ca3', '#7209b7',
+                '#ff006e', '#4cc9f0', '#9d4edd', '#ff5400', '#7209b7',
                 '#4361ee', '#f72585', '#4cc9f0', '#ffd166', '#06d6a0',
                 '#118ab2', '#ef476f', '#ffd166'
             ];
             
             const canvas = document.createElement('canvas');
-            canvas.width = 300;
-            canvas.height = 300;
+            canvas.width = 400;
+            canvas.height = 400;
             const ctx = canvas.getContext('2d');
             
             // Create cosmic background
-            const gradient = ctx.createRadialGradient(150, 150, 0, 150, 150, 150);
+            const gradient = ctx.createRadialGradient(200, 200, 0, 200, 200, 200);
             gradient.addColorStop(0, colors[index]);
             gradient.addColorStop(1, '#000814');
             
             ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, 300, 300);
+            ctx.fillRect(0, 0, 400, 400);
             
             // Add stars
-            for (let i = 0; i < 50; i++) {
-                const x = Math.random() * 300;
-                const y = Math.random() * 300;
+            for (let i = 0; i < 100; i++) {
+                const x = Math.random() * 400;
+                const y = Math.random() * 400;
                 const size = Math.random() * 3 + 1;
                 
                 ctx.fillStyle = 'white';
@@ -1067,12 +1896,12 @@
             
             // Add text
             ctx.fillStyle = 'white';
-            ctx.font = 'bold 24px Arial';
+            ctx.font = 'bold 30px Arial';
             ctx.textAlign = 'center';
-            ctx.fillText('Birthday', 150, 130);
-            ctx.fillText('Magic', 150, 170);
-            ctx.font = 'bold 40px Arial';
-            ctx.fillText(`${index + 1}`, 150, 230);
+            ctx.fillText('Birthday', 200, 160);
+            ctx.fillText('Magic', 200, 200);
+            ctx.font = 'bold 50px Arial';
+            ctx.fillText(`${index + 1}`, 200, 280);
             
             const img = new Image();
             img.src = canvas.toDataURL();
@@ -1187,7 +2016,104 @@
             centralImage.addEventListener('click', () => openImageModal(centralImg.src));
         }
         
-        // Show image from house
+        // Setup slider images
+        function setupSliderImages() {
+            sliderTrack.innerHTML = '';
+            
+            // Create duplicate images to ensure continuous scrolling
+            const totalSlides = loadedImages.length * 3; // Show each image 3 times
+            
+            for (let i = 0; i < totalSlides; i++) {
+                const imgIndex = i % loadedImages.length;
+                const imageData = loadedImages[imgIndex];
+                
+                const slide = document.createElement('div');
+                slide.classList.add('slider-image');
+                
+                const img = document.createElement('img');
+                img.src = imageData.src === "fallback" ? imageData.element.src : imageData.src;
+                img.alt = `Birthday Image ${imgIndex + 1}`;
+                
+                // Make clickable
+                slide.addEventListener('click', () => openImageModal(img.src));
+                
+                slide.appendChild(img);
+                sliderTrack.appendChild(slide);
+            }
+        }
+        
+        // Setup circular orbit images
+        function setupCircularOrbit() {
+            circularOrbit.innerHTML = '';
+            
+            // Create 8 orbiting images
+            for (let i = 0; i < 8; i++) {
+                const imgIndex = i % loadedImages.length;
+                const imageData = loadedImages[imgIndex];
+                
+                const orbitImage = document.createElement('div');
+                orbitImage.classList.add('orbiting-image');
+                
+                // Calculate position on circle
+                const radius = 175; // Half of circular-orbit width (350/2)
+                const angle = (i * (360 / 8)) * (Math.PI / 180);
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+                
+                // Position the image at calculated coordinates
+                orbitImage.style.transform = `translate(${x}px, ${y}px)`;
+                
+                // Set animation with delay for each image
+                const duration = 20; // seconds
+                const delay = i * (duration / 8);
+                orbitImage.style.animation = `orbit ${duration}s linear infinite ${delay}s`;
+                
+                const img = document.createElement('img');
+                img.src = imageData.src === "fallback" ? imageData.element.src : imageData.src;
+                img.alt = `Orbiting Image ${imgIndex + 1}`;
+                
+                // Make clickable
+                orbitImage.addEventListener('click', () => openImageModal(img.src));
+                
+                orbitImage.appendChild(img);
+                circularOrbit.appendChild(orbitImage);
+            }
+        }
+        
+        // Setup SMALL window images
+        function setupWindowImages() {
+            if (loadedImages.length < 2) return;
+            
+            // Set left window image (use image 1)
+            const leftIndex = 0 % loadedImages.length;
+            const leftImageData = loadedImages[leftIndex];
+            leftWindowImage.src = leftImageData.src === "fallback" ? leftImageData.element.src : leftImageData.src;
+            leftWindowImage.alt = `Window Image ${leftIndex + 1}`;
+            
+            // Set right window image (use image 2)
+            const rightIndex = 1 % loadedImages.length;
+            const rightImageData = loadedImages[rightIndex];
+            rightWindowImage.src = rightImageData.src === "fallback" ? rightImageData.element.src : rightImageData.src;
+            rightWindowImage.alt = `Window Image ${rightIndex + 1}`;
+            
+            // Make window images clickable
+            document.querySelectorAll('.window-image-display').forEach(window => {
+                window.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const imgSrc = this.querySelector('img').src;
+                    openImageModal(imgSrc);
+                });
+            });
+            
+            // Show window images after delay
+            setTimeout(() => {
+                document.querySelectorAll('.window-image-display').forEach(window => {
+                    window.classList.add('active');
+                });
+            }, 1500);
+        }
+        
+        // Show image in house (main house display)
         function showHouseImage() {
             if (loadedImages.length === 0) return;
             
@@ -1196,22 +2122,142 @@
             houseImageContent.src = imageData.src === "fallback" ? imageData.element.src : imageData.src;
             houseImageContent.alt = `Birthday Image ${currentHouseImageIndex + 1}`;
             
-            // Show the image
-            houseImage.classList.add('active');
+            // Show the image inside house
+            houseImageDisplay.classList.add('active');
             
-            // Move to next image for next click
-            currentHouseImageIndex = (currentHouseImageIndex + 1) % loadedImages.length;
-            
-            // Add visual effect to house
-            houseContainer.style.transform = 'scale(1.05)';
-            setTimeout(() => {
-                houseContainer.style.transform = 'scale(1)';
-            }, 300);
+            // Make house image clickable
+            houseImageContent.addEventListener('click', function(e) {
+                e.stopPropagation();
+                openImageModal(this.src);
+            });
         }
         
-        // Hide house image
-        function hideHouseImage() {
-            houseImage.classList.remove('active');
+        // Change house image
+        function changeHouseImage() {
+            if (loadedImages.length === 0) return;
+            
+            // Move to next image
+            currentHouseImageIndex = (currentHouseImageIndex + 1) % loadedImages.length;
+            showHouseImage();
+            
+            // Add visual effect to house
+            bigDarkHouse.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                bigDarkHouse.style.transform = 'scale(1)';
+            }, 300);
+            
+            // Visual feedback on button
+            changeHouseImageBtn.classList.add('active');
+            setTimeout(() => {
+                changeHouseImageBtn.classList.remove('active');
+            }, 1000);
+        }
+        
+        // Blow candle
+        function blowCandle() {
+            if (isCandleBlown) return;
+            
+            isCandleBlown = true;
+            
+            // Extinguish flame
+            candleFlame.style.animation = 'none';
+            candleFlame.style.opacity = '0';
+            candleFlame.style.transform = 'translateX(-50%) scale(0.5)';
+            
+            // Show wish text
+            wishText.style.opacity = '1';
+            
+            // Create smoke particles
+            createSmokeParticles();
+            
+            // Visual feedback
+            blowArea.style.opacity = '0.3';
+            blowArea.style.pointerEvents = 'none';
+        }
+        
+        // Create smoke particles
+        function createSmokeParticles() {
+            const cake = document.querySelector('.cake');
+            
+            for (let i = 0; i < 20; i++) {
+                const smoke = document.createElement('div');
+                smoke.style.position = 'absolute';
+                smoke.style.width = '10px';
+                smoke.style.height = '10px';
+                smoke.style.backgroundColor = 'rgba(200, 200, 200, 0.7)';
+                smoke.style.borderRadius = '50%';
+                smoke.style.top = '-200px';
+                smoke.style.left = '50%';
+                smoke.style.transform = 'translateX(-50%)';
+                smoke.style.zIndex = '10';
+                
+                cake.appendChild(smoke);
+                
+                // Animate smoke
+                const angle = (Math.random() - 0.5) * 60;
+                const distance = Math.random() * 100 + 50;
+                
+                smoke.animate([
+                    { opacity: 0.8, transform: `translateX(-50%) translateY(0) scale(1)` },
+                    { opacity: 0, transform: `translateX(-50%) translateY(-${distance}px) translateX(${angle}px) scale(2)` }
+                ], {
+                    duration: 2000,
+                    easing: 'ease-out'
+                });
+                
+                // Remove after animation
+                setTimeout(() => {
+                    smoke.remove();
+                }, 2000);
+            }
+        }
+        
+        // Create crow sound effect
+        function createCrowSound() {
+            // Create audio context for sound effect
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.type = 'sawtooth';
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.5);
+                
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 0.5);
+            } catch (e) {
+                console.log("Audio not supported");
+            }
+        }
+        
+        // Reset candle
+        function resetCandle() {
+            isCandleBlown = false;
+            
+            // Re-light flame
+            candleFlame.style.animation = 'flicker 0.5s infinite alternate';
+            candleFlame.style.opacity = '1';
+            candleFlame.style.transform = 'translateX(-50%) scale(1)';
+            
+            // Hide wish text
+            wishText.style.opacity = '0';
+            
+            // Reset blow area
+            blowArea.style.opacity = '0.5';
+            blowArea.style.pointerEvents = 'auto';
+            
+            // Visual feedback
+            resetCandleBtn.classList.add('active');
+            setTimeout(() => {
+                resetCandleBtn.classList.remove('active');
+            }, 1000);
         }
         
         // Open image modal
@@ -1237,6 +2283,9 @@
             
             // Update all animations
             const rings = [outerRing, middleRing, innerRing];
+            const sliderTrack = document.querySelector('.slider-track');
+            const orbitingImages = document.querySelectorAll('.orbiting-image');
+            
             rings.forEach(ring => {
                 const currentAnimation = window.getComputedStyle(ring).animation;
                 const newAnimation = currentAnimation.replace(/\d+s/g, (match) => {
@@ -1244,6 +2293,26 @@
                     return `${time / currentSpeed}s`;
                 });
                 ring.style.animation = newAnimation;
+            });
+            
+            // Update slider animation
+            if (sliderTrack) {
+                const currentAnimation = window.getComputedStyle(sliderTrack).animation;
+                const newAnimation = currentAnimation.replace(/\d+s/g, (match) => {
+                    const time = parseFloat(match);
+                    return `${time / currentSpeed}s`;
+                });
+                sliderTrack.style.animation = newAnimation;
+            }
+            
+            // Update orbiting images
+            orbitingImages.forEach((img, index) => {
+                const currentAnimation = window.getComputedStyle(img).animation;
+                const newAnimation = currentAnimation.replace(/\d+s/g, (match) => {
+                    const time = parseFloat(match);
+                    return `${time / currentSpeed}s`;
+                });
+                img.style.animation = newAnimation;
             });
             
             // Update button
@@ -1291,22 +2360,35 @@
             // Control buttons
             speedBtn.addEventListener('click', changeSpeed);
             pauseBtn.addEventListener('click', togglePause);
+            changeHouseImageBtn.addEventListener('click', changeHouseImage);
             bloomBtn.addEventListener('click', showBirthdayBloom);
-            resetBtn.addEventListener('click', hideHouseImage);
+            resetCandleBtn.addEventListener('click', resetCandle);
             
             // House click
-            houseContainer.addEventListener('click', showHouseImage);
+            bigDarkHouse.addEventListener('click', changeHouseImage);
             
-            // Close house image
-            closeHouseImage.addEventListener('click', function(e) {
-                e.stopPropagation();
-                hideHouseImage();
+            // Candle blow
+            candleFlame.addEventListener('click', blowCandle);
+            blowArea.addEventListener('click', blowCandle);
+            
+            // Crow click effect
+            document.getElementById('crow').addEventListener('click', function() {
+                // Make crow jump
+                this.style.transform = 'translateY(-20px)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 300);
+                
+                // Play crow sound or effect
+                createCrowSound();
             });
             
-            // House image click to open in modal
-            houseImageContent.addEventListener('click', function(e) {
-                e.stopPropagation();
-                openImageModal(this.src);
+            // Small moon click effect
+            document.getElementById('smallMoon').addEventListener('click', function() {
+                this.style.boxShadow = '0 0 50px rgba(255, 215, 0, 1)';
+                setTimeout(() => {
+                    this.style.boxShadow = '';
+                }, 1000);
             });
             
             // Modal

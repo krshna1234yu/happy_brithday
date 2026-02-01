@@ -1437,6 +1437,381 @@
                 width: 220px;
             }
         }
+          :root {
+            --primary-color: #ff4e7b;
+            --secondary-color: #ffafbd;
+            --tertiary-color: #a1c4fd;
+            --light-color: #fff;
+            --dark-color: #555;
+            --shadow: 0 10px 20px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+            --border-radius: 15px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #ffafbd, #ffc3a0, #a1c4fd, #c2e9fb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--dark-color);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            padding: 30px 0;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            color: var(--primary-color);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-weight: 300;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        /* Photo Section */
+        .photo-frame {
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            animation: slideInLeft 1s ease;
+        }
+        
+        .photo-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .photo-container {
+            width: 100%;
+            aspect-ratio: 2/3;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            background-color: #f8f8f8;
+        }
+        
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .photo-container img:hover {
+            transform: scale(1.03);
+        }
+        
+        /* Calendar Section */
+        .calendar-container {
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            animation: slideInRight 1s ease;
+        }
+        
+        .calendar-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        #currentMonth {
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
+            color: var(--dark-color);
+        }
+        
+        .calendar-nav {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .calendar-nav button {
+            background: linear-gradient(to right, var(--tertiary-color), #c2e9fb);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: var(--light-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .calendar-nav button:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Calendar Grid */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .calendar-day-name {
+            text-align: center;
+            font-weight: 600;
+            color: #777;
+            padding: 10px 0;
+            font-size: 0.9rem;
+        }
+        
+        .calendar-day {
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .calendar-day:hover {
+            background-color: rgba(255, 175, 189, 0.2);
+        }
+        
+        .calendar-day.other-month {
+            color: #bbb;
+        }
+        
+        .calendar-day.highlight {
+            background: linear-gradient(to right, var(--secondary-color), #ffc3a0);
+            color: var(--light-color);
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(255, 111, 145, 0.3);
+            position: relative;
+        }
+        
+        .calendar-day.highlight:after {
+            content: '🎂';
+            position: absolute;
+            top: -2px;
+            right: 2px;
+            font-size: 0.7rem;
+        }
+        
+        /* Birthday Info */
+        .birthday-info {
+            background-color: rgba(255, 175, 189, 0.15);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-top: 25px;
+        }
+        
+        .birthday-date {
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
+            color: var(--primary-color);
+            font-family: 'Dancing Script', cursive;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0 20px;
+            color: #666;
+            font-size: 0.9rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .heart-icon {
+            color: var(--primary-color);
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+            margin: 0 5px;
+        }
+        
+        /* Upload Section */
+        .upload-section {
+            margin-top: 20px;
+        }
+        
+        #imageUrl {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--secondary-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+        
+        #imageUrl:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 78, 123, 0.2);
+        }
+        
+        .upload-btn {
+            background: linear-gradient(to right, var(--secondary-color), #ffc3a0);
+            color: var(--light-color);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            width: 100%;
+        }
+        
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 111, 145, 0.3);
+        }
+        
+        /* Heart Animation */
+        .heart-animation {
+            position: fixed;
+            top: -10%;
+            font-size: 20px;
+            color: var(--primary-color);
+            opacity: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10% { transform: scale(1.2); }
+            20% { transform: scale(1.1); }
+            30% { transform: scale(1.3); }
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+            
+            .calendar-day {
+                padding: 8px 0;
+                font-size: 0.9rem;
+            }
+            
+            .calendar-grid {
+                gap: 5px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2.2rem;
+            }
+            
+            .photo-title, .calendar-title {
+                font-size: 1.8rem;
+            }
+            
+            .calendar-nav button {
+                width: 35px;
+                height: 35px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1645,6 +2020,53 @@
     <div class="image-modal" id="imageModal">
         <span class="close-modal" id="closeModal">&times;</span>
         <img class="modal-content" id="modalImage" src="" alt="Enlarged view">
+    </div>
+
+    <div class="container">
+        <header>
+            <h1 class="title">Happy Birthday My Love!</h1>
+            <p class="subtitle">To the most amazing person in my life. Today is all about you!</p>
+        </header>
+        
+        <div class="main-content">
+            <!-- Photo Section -->
+            <div class="photo-frame">
+                <h2 class="photo-title">My Beautiful Girlfriend</h2>
+                <div class="photo-container">
+                    <img id="girlfriendPhoto" src="image.jpg" alt="Beautiful Girlfriend" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNGN0Y3RjciLz4KPHBhdGggZD0iTTUwIDMwQzQxLjcxNTcgMzAgMzUgMzYuNzE1NyAzNSA0NUMzNSA1My4yODQzIDQxLjcxNTcgNjAgNTAgNjBDNTguMjg0MyA2MCA2NSA1My4yODQzIDY1IDQ1QzY1IDM2LjcxNTcgNTguMjg0MyAzMCA1MCAzMFpNNTAgNzVDMzguNSA3NSAzMCA2Ni41IDMwIDU1SDcwQzcwIDY2LjUgNjEuNSA3NSA1MCA3NVoiIGZpbGw9IiNGRjRGN0IiLz4KPC9zdmc+'">
+                </div>
+                <div class="upload-section">
+                    <input type="url" id="imageUrl" placeholder="Paste image URL to update photo">
+                    <button class="upload-btn" id="updatePhoto">Update Photo</button>
+                </div>
+            </div>
+            
+            <!-- Calendar Section -->
+            <div class="calendar-container">
+                <h2 class="calendar-title">Special Day Calendar</h2>
+                <div class="calendar-header">
+                    <h3 id="currentMonth">February 2006</h3>
+                    <div class="calendar-nav">
+                        <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                        <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Calendar days will be generated by JavaScript -->
+                </div>
+                
+                <div class="birthday-info">
+                    <div class="birthday-date">February 16, 2006</div>
+                    <p class="birthday-message">This is the day an angel was born! The day the most wonderful person came into this world. I'm so grateful for every moment we share together.</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Made with <span class="heart-icon">❤️</span> for the most special person in my life</p>
+            <p>Happy Birthday my love! May all your dreams come true.</p>
+        </footer>
     </div>
 
     <script>
@@ -2419,6 +2841,163 @@
         
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', init);
+         // Calendar functionality
+        let currentDate = new Date(2006, 1, 16);
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        
+        function renderCalendar(date) {
+            const calendarGrid = document.getElementById('calendarGrid');
+            const monthYear = document.getElementById('currentMonth');
+            
+            calendarGrid.innerHTML = '';
+            monthYear.textContent = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+            
+            // Add day names
+            dayNames.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.classList.add('calendar-day-name');
+                dayElement.textContent = day;
+                calendarGrid.appendChild(dayElement);
+            });
+            
+            // Calculate calendar dates
+            const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+            const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+            const totalDays = lastDay.getDate();
+            const firstDayIndex = firstDay.getDay();
+            const prevMonthLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
+            
+            // Previous month days
+            for (let i = firstDayIndex - 1; i >= 0; i--) {
+                const dayElement = document.createElement('div');
+                dayElement.classList.add('calendar-day', 'other-month');
+                dayElement.textContent = prevMonthLastDay - i;
+                calendarGrid.appendChild(dayElement);
+            }
+            
+            // Current month days
+            for (let i = 1; i <= totalDays; i++) {
+                const dayElement = document.createElement('div');
+                dayElement.classList.add('calendar-day');
+                dayElement.textContent = i;
+                
+                if (date.getMonth() === 1 && date.getFullYear() === 2006 && i === 16) {
+                    dayElement.classList.add('highlight');
+                    dayElement.title = "Your Birthday! 🎂";
+                }
+                
+                calendarGrid.appendChild(dayElement);
+            }
+            
+            // Next month days
+            const totalCells = 42;
+            const nextMonthDays = totalCells - (firstDayIndex + totalDays);
+            
+            for (let i = 1; i <= nextMonthDays; i++) {
+                const dayElement = document.createElement('div');
+                dayElement.classList.add('calendar-day', 'other-month');
+                dayElement.textContent = i;
+                calendarGrid.appendChild(dayElement);
+            }
+        }
+        
+        // Update photo functionality
+        function setupPhotoUpdate() {
+            const updateBtn = document.getElementById('updatePhoto');
+            const imageUrlInput = document.getElementById('imageUrl');
+            const photoElement = document.getElementById('girlfriendPhoto');
+            
+            function updatePhoto() {
+                const url = imageUrlInput.value.trim();
+                if (url) {
+                    photoElement.src = url;
+                    imageUrlInput.value = '';
+                    imageUrlInput.placeholder = "Photo updated!";
+                    setTimeout(() => {
+                        imageUrlInput.placeholder = "Paste image URL to update photo";
+                    }, 2000);
+                } else {
+                    imageUrlInput.placeholder = "Please enter a valid URL";
+                    imageUrlInput.style.borderColor = "#ff0000";
+                    setTimeout(() => {
+                        imageUrlInput.style.borderColor = "";
+                        imageUrlInput.placeholder = "Paste image URL to update photo";
+                    }, 2000);
+                }
+            }
+            
+            updateBtn.addEventListener('click', updatePhoto);
+            imageUrlInput.addEventListener('keypress', (e) => e.key === 'Enter' && updatePhoto());
+        }
+        
+        // Calendar navigation
+        function setupCalendarNavigation() {
+            document.getElementById('prevMonth').addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                renderCalendar(currentDate);
+            });
+            
+            document.getElementById('nextMonth').addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                renderCalendar(currentDate);
+            });
+        }
+        
+        // Background heart animation
+        function createHearts() {
+            const heartCount = 15;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-animation');
+                heart.innerHTML = '❤️';
+                
+                const leftPos = Math.random() * 100;
+                const size = Math.random() * 15 + 10;
+                const duration = Math.random() * 8 + 10;
+                const delay = Math.random() * 5;
+                
+                heart.style.left = `${leftPos}%`;
+                heart.style.fontSize = `${size}px`;
+                heart.style.animation = `fall ${duration}s linear ${delay}s infinite`;
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes fall {
+                        0% {
+                            top: -10%;
+                            opacity: 1;
+                            transform: translateX(0) rotate(0deg);
+                        }
+                        100% {
+                            top: 110%;
+                            opacity: 0;
+                            transform: translateX(${Math.random() * 100 - 50}px) rotate(${Math.random() * 360}deg);
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+                document.body.appendChild(heart);
+            }
+        }
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            createHearts();
+            renderCalendar(currentDate);
+            setupPhotoUpdate();
+            setupCalendarNavigation();
+            
+            // Add title hover effect
+            const title = document.querySelector('.title');
+            title.addEventListener('mouseover', () => title.style.transform = 'scale(1.05)');
+            title.addEventListener('mouseout', () => title.style.transform = 'scale(1)');
+        });
     </script>
 </body>
 </html>
+

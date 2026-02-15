@@ -1683,7 +1683,54 @@
             font-family: 'Dancing Script', cursive;
             margin-bottom: 10px;
         }
-        
+        /* Main Container */
+.duff-container {
+    width: min(90%, 420px);
+    margin: 80px auto;
+    padding: 35px 25px;
+    text-align: center;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    font-family: 'Segoe UI', sans-serif;
+    color: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Animation */
+.duff-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Title */
+.duff-title {
+    font-size: clamp(18px, 4vw, 26px);
+    font-weight: 600;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+}
+
+/* Timer Text */
+.duff-timer {
+    font-size: clamp(24px, 6vw, 38px);
+    font-weight: bold;
+    letter-spacing: 3px;
+    padding: 10px 0;
+}
+
+/* Small Devices */
+@media (max-width: 480px) {
+    .duff-container {
+        padding: 25px 15px;
+        border-radius: 18px;
+    }
+
+    .duff-timer {
+        letter-spacing: 1px;
+    }
+}
+
         /* Footer */
         footer {
             text-align: center;
@@ -1838,9 +1885,49 @@
                 height: 35px;
             }
         }
+        /* Moving Text */
+#starlightText {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: clamp(18px, 4vw, 28px);
+    font-family: 'Segoe UI', sans-serif;
+    color: #ffffff;
+    font-weight: 500;
+    padding-left: 100%;
+    animation: rightToLeft 30s linear infinite;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8),
+                 0 0 20px rgba(144,238,144,0.8),
+                 0 0 30px rgba(0,255,127,0.6);
+}
+
+/* Animation */
+@keyframes rightToLeft {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Small Device Adjustment */
+@media (max-width: 480px) {
+    .skyflow-wrapper {
+        padding: 18px 0;
+        border-radius: 12px;
+    }
+}
     </style>
 </head>
 <body>
+    <div class="duff-container">
+    <div class="duff-title">Birthday Wait ⏳ Countdown Timer</div>
+    <div class="duff-timer" id="duffTimer">Loading...</div>
+</div>
+<div class="skyflow-wrapper">
+    <div id="starlightText">
+        🍀 At 6:15 PM, the stars weren't out yet, so the world made its own: You. 🌟
+    </div>
     <!-- Starfield Background -->
     <div class="starfield" id="starfield"></div>
     <div class="nebula"></div>
@@ -2475,6 +2562,32 @@
                 sliderTrack.appendChild(slide);
             }
         }
+         // Target: 16 Feb 12:00 AM IST
+    const targetDate = new Date("February 16, 2026 00:00:00 GMT+0530");
+
+    function updateCountdown() {
+        const now = new Date();
+        const difference = targetDate - now;
+
+        const timer = document.getElementById("duffTimer");
+
+        if (difference <= 0) {
+            timer.innerHTML = "🎉 Time Reached!";
+            return;
+        }
+
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((difference / (1000 * 60)) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
+
+        timer.innerHTML = 
+            hours + "h : " + 
+            minutes + "m : " + 
+            seconds + "s ";
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
         
         // Setup circular orbit images
         function setupCircularOrbit() {
